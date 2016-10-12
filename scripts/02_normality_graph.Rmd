@@ -1,0 +1,52 @@
+---
+title: "03_normality_test"
+author: "Chris Huntley"
+date: "October 11, 2016"
+output: html_document
+---
+
+
+```{r, setup, include = FALSE}
+library(knitr)
+opts_knit$set(root.dir = '../')
+opts_chunk$set(echo = TRUE, collapse = TRUE)
+```
+
+```{r}
+# load packages
+suppressPackageStartupMessages(library(dplyr))
+library(tidyr)
+library(stringr)
+library(readr)
+library(ggplot2)
+```
+
+```{r}
+#import trial data and examine structure 
+trial_data <- read_csv('data/data_original.csv')
+```
+
+```{r}
+results_period <- shapiro.test(trial_data$Period)
+results_i <- shapiro.test(trial_data$I)
+```
+
+```{r}
+#ls_period <- lsfit(trial_data,trial_data$Period)
+#ls.print(ls_period)
+png("results/02_normality_period.png",1600,900)
+qqnorm(trial_data$Period)
+qqline(trial_data$Period)
+graphics.off()
+png("results/02_normality_i.png",1600,900)
+norm_i <- qqnorm(trial_data$I)
+          qqline(trial_data$I)
+graphics.off()
+```
+
+
+P-value:\
+period = `r results_period[2]`\
+i      = `r results_i[2]`
+
+

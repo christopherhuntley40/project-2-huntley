@@ -1,0 +1,117 @@
+---
+title: "Trifilar Pendulum"
+author: "Austin Bentle, Chris Huntley, Nicholas French-Seats, Jeff Ludwig"
+date: "May 11, 2015"
+output: word_document
+---
+
+```{r, setup, include = FALSE}
+library(knitr)
+opts_knit$set(root.dir = '../')
+opts_chunk$set(echo = FALSE, message = FALSE, collapse = TRUE)
+```
+
+```{r}
+# load packages
+suppressPackageStartupMessages(library(dplyr))
+library(tidyr)
+library(stringr)
+library(readr)
+```
+
+#Introduction 
+
+  The object of this experiment is to determine the polar moment of inertia of a triangular plate also known as the trifilar pendulum.  The polar moment of inertia is a geometric property of a cross-section.  The physical interpretation of this property is the measure of how difficult it is to turn a given cross section about a perpendicular axis.  In the lab the polar moment of inertia was calculated by using a trifilar pendulum.  The pendulum was suspended by wires from the ceiling and was rotated approximately 10 degrees.  By measuring the period of oscillation the polar moment of inertia of the trifilar pendulum can be determined. 
+  
+#Experimental Facilities and Instrumentation 
+  
+**Pendulum Apparatus.**The trifilar pendulum shown in Figure 1 is a triangular metal plate with holes located at each of the three corners. Eyebolts and turnbuckles are inserted into the holes and attached to hanging wires from the ceiling.  The turnbuckles allow for minute adjustments to the length of the suspending wires in order to make the trifilar pendulum evenly balanced.  An electronic level was used to ensure the pendulum was flat.  The trifilar pendulum uses a popsicle stick attached to one of the corners to break the infrared beam of the photogate sensor.  For the purposes of this lab, the popsicle stick will have negligible mass, so it does not add to the total mass or inertia of the plate.
+
+```{r, fig.cap = 'Figure 1. Trifilar Pedulum experimental set up'}
+#import image of pedulum setup
+knitr::include_graphics("../resources/trifilarpedulum.png")
+```
+
+**Scale and Ruler.** In order to calculate the polar moment of inertia as in equation (1), it is necessary for both the mass and the radius of the trifilar pendulum to be recorded. To record the mass of the pendulum, we had to disconnect the eyebolts and turnbuckles from the pendulum base. It was at this point that the mass of the three eye bolts, thee turnbuckles, and pendulum could all be recorded. It is important to notice that the mass of all three eyebolts were recorded but separately from the three turnbuckles. When measuring the radius, a ruler was used to measure the distance from the center of the pendulum to the center of the holes where the eye bolts were connected to the pendulum. Further, the lengths of the wires which were fixated from the ceiling of the lab in which we were working, were recorded by measuring a pipe that was marked with the same length. These measurements can be found in Table 1. 
+
+```{r}
+operating_cond <- read.csv('data/operating_conditions.csv')
+kable(operating_cond, digits = 3, caption = "Table 1. Operating Conditions")
+```
+
+**Oscilloscope and Photogate Head.** The Photogate Head uses an infrared beam and a fast fall time that provides very accurate signals for timing.  When the infrared beam between the source and detector is blocked the output of the photogate is low and the red LED on the photogate goes on.  When the beam is not blocked, the output is high and the LED is off. When the popsicle stick breaks the infrared beam of the photogate, the oscilloscope senses the voltage that is let through.  The oscilloscope is able to show theses voltage surges on a graph which can be found in Figure 2 of Appendix 2.  The time difference between these voltages is the period of oscillation. For this experiment, the oscilloscope and photogate are being powered by the power supply.   
+
+**Data Reduction and Uncertainty Analysis** 
+
+The moment of inertia for the trifilar pendulum is 
+$$ 
+Iplate = (W*R^2*T^2)/(4*Pi^2*L)-Ieyebolts-Iturnbuckles
+$$
+Which takes into account the inertia of both the eye bolts and the turnbuckles and subtracts them from the inertia of the entire apparatus.  This equation can be derived starting with the relationship between angular acceleration and torque which is given by 
+$$
+t = I*a
+$$
+This is applied to the pendulum by examining the torques that are applied at each corner and summing the resultant giving
+$$
+t1+t2+t3 = I*a
+$$
+The Arc Length equation yields
+$$
+theta = (R*a)/L
+$$
+A sideways resultant force acts on the plate and can be taken as 
+$$
+F = -T1*sin(theta)
+$$
+Which can be substituted into equation (3) yielding
+$$
+F = -T1*theta
+$$
+The force acts through a moment arm with length R to produce a restoring torque 
+$$
+t1 = -T1*R*theta
+$$
+Theta is assumed to be the same for all three wires so,
+$$
+-R*theta*(T1+T2+T3) = I*a
+$$
+By assuming that the sum of the tensions is equivalent to the overall weight of the apparatus W, and substituting equation (4) into equation (9), an equation for harmonic motion can be obtained with
+$$
+I*a+(R^2*a*W)/L = 0
+$$
+This differential equation may be solved by dividing both terms by I and realizing that the frequency for a second order, differential equation is the square root of the coefficient in the α term. This yields
+$$
+f = 1/(2*Pi)*sqrt(IL/(R^2*W))
+$$
+From equation (11), the period is defined as 
+$$
+T = 2*Pi*sqrt((IL)/(R^2*W))
+$$
+By manipulating the above equation, we can obtain the formula that evaluates the polar moment of inertia for the entire trifilar pendulum apparatus
+$$
+I = (R^2*W*T^2)/(4*Pi^2*L)
+$$
+In an effort to determine the polar moment of inertia for the plate alone, the polar moments of inertia for the turnbuckles and eyebolts must be subtracted from the total polar moment of inertia. The equation for the polar moment of inertia for both the turnbuckles and the eyebolts can be given by
+$$
+I = m*r^2
+$$
+Where r is the distance from any given point on the object to the origin of the axis. By subtracting the inertia for both the turnbuckles and the eyebolts using their respective masses and radii, we can obtain the final polar moment of inertia for the plate which is given in (1).
+
+**Uncertainty Analysis.** . Iplate is the moment of inertia of just the triangular metal plate, Ieyebolts is the moment of inertia induced from the eyebolts that connect the plate to the ceiling string, and I_turnbucklesis the moment of inertia induced from the turnbuckles on the string that connect to the eyebolts.  A Salter Brecknell Model 325 electronic scale was used to collect the masses of the eyebolts, turnbuckles and plate in kilograms. The weight of the plate was converted from kilograms to newtons by multiplying it times the force of gravity.  A simple ruler was used to collect R, the distance from the center of the pendulum plate to each triangular corner in meters.  A photogate was used in conjunction with a Tektronic oscilloscope to measure voltage spikes as the pendulum traveled across the photogate’s beam of light in order to collect T, the period in seconds which can be found in appendix 2.  L is a given distance from the point on the ceiling that the plate hangs from to the plate itself in meters.
+
+Systematic uncertainties from the plate were collected for variables R, T, L, and W.  Other systematic uncertainties include meyebolts and m_turnbuckles because they were measured using the same scale as W for the plate.  The systematic uncertainty equation developed from the measurands is
+$$
+w_(I,sys)^2=(∂W/∂I w_(w,sys))^2+(∂R/∂I w_(R,sys))^2+(∂T/∂I w_(T,sys))^2+(∂L/∂I w_(L,sys))^2+((∂m_eyebolts)/∂I w_(m_eyebolts,sys))^2+((∂m_turnbuckle)/∂I w_(m_turnbuckle,sys))^2
+$$
+Random uncertainty is also accounted for in the period since it is the measurand we tested multiple (15) times.  The uncertainties calculated are in Table 2.
+
+```{r}
+#uncertainty_data <- read.csv('data/uncertainty.csv')
+#kable(uncertainty_data, digits = 3, caption = "Table 2. Typical Uncertainty in Iplate")
+```
+
+These uncertainties were calculated using equation (15) with the largest uncertainty coming from the random uncertainty.
+
+#Results and Discussion 
+
+Multiple values were recorded for the period of the Trifilar Pendulum.  The polar moment of intertia was then calculated for each period and an average was taken.  The polar moment of inertia of the triangle shaped plate was found to be 

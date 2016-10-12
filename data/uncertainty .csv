@@ -1,0 +1,9 @@
+Parameter,Typical Values ,Units ,Uncertainty (Dimensional),Uncertainty in Iplate due to parameter (%)
+W,10.575,N,5.15E-15,0.22
+R,0.176,m,4.71E-11,21.28
+T,1.278,s,1.03E-17,0.01
+L,3.68,m,2.51E-13,1.55
+M eyebolts ,0.138,kg,4.07E-11,19.79
+M turnbuckles ,0.102,kg,4.07E-11,19.79
+I random ,mean of I ,kg(m^2),9.11E-11,37.44
+I plate ,0.001498,kg(m^2),,100
