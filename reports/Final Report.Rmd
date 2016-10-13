@@ -106,12 +106,28 @@ $$
 Random uncertainty is also accounted for in the period since it is the measurand we tested multiple (15) times.  The uncertainties calculated are in Table 2.
 
 ```{r}
-#uncertainty_data <- read.csv('data/uncertainty.csv')
-#kable(uncertainty_data, digits = 3, caption = "Table 2. Typical Uncertainty in Iplate")
+uncertainty_data <- read.csv('data/uncertainty .csv')
+kable(uncertainty_data, digits = 3, caption = "Table 2. Typical Uncertainty in Iplate")
 ```
 
 These uncertainties were calculated using equation (15) with the largest uncertainty coming from the random uncertainty.
 
 #Results and Discussion 
 
-Multiple values were recorded for the period of the Trifilar Pendulum.  The polar moment of intertia was then calculated for each period and an average was taken.  The polar moment of inertia of the triangle shaped plate was found to be 
+```{r}
+#import the gathered data
+gathered_data <- read.csv('results/01_data_gathered.csv')
+```
+
+Multiple values were recorded for the period of the Trifilar Pendulum.The polar moment of intertia was then calculated for each period and an average was taken.  The polar moment of inertia of the triangle shaped plate was found to be \
+'r sprintf("%0.5f",gathered_data$I$mean)'± 'r sprintf("%0.1f",uncertainty_data$I plate $Uncertainty in Iplate due to parameter (%))'
+
+```{r}
+kable(gathered_data, digits = 3, caption = "Table 3. Polar moment of inertia values calculated from data gathered during Pendulum Experimentation")
+```
+
+After collecting this data we ran a normality test to check and make sure that the data was normal. 
+
+**Conclusion** 
+
+This experiment determined the polar moment of inertia of a triangular plate using a trifilar pendulum.  This was done by using an estimation of the polar moment of inertia of the whole system that was calculated using the experimental results for period, and then subtracting the theoretical values for the polar moment of inertia of the turnbuckles and eyebolts.  Possible places where error could have occurred in the experiment include the accidental use of varying angles or horizontal movement of the center of the plate.    In the analysis the angle was assumed to have been the same each time and if this wasn’t true it could skew the results.  We did not a device or object that could hold and release the pendulum at the same point each time so there were inconsistencies in initial plate rotation.  Likewise it was assumed that the plate rotated around its center while the center remained stationary, and any movement of the center of the plate could cause variance in the results.
