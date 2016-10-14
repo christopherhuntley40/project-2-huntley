@@ -120,7 +120,8 @@ gathered_data <- read.csv('results/01_data_gathered.csv')
 ```
 
 Multiple values were recorded for the period of the Trifilar Pendulum.The polar moment of intertia was then calculated for each period and an average was taken.  The polar moment of inertia of the triangle shaped plate was found to be \
-'r sprintf("%0.5f",gathered_data$I$mean)'± 'r sprintf("%0.1f",uncertainty_data$I plate $Uncertainty in Iplate due to parameter (%))'
+`r sprintf("%0.5f",gathered_data$I$mean)`± `r sprintf("%0.1f",uncertainty_data$I plate $Uncertainty in Iplate due to parameter (%))`
+
 
 ```{r}
 kable(gathered_data, digits = 3, caption = "Table 3. Polar moment of inertia values calculated from data gathered during Pendulum Experimentation")
