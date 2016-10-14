@@ -101,7 +101,7 @@ Where r is the distance from any given point on the object to the origin of the 
 
 Systematic uncertainties from the plate were collected for variables R, T, L, and W.  Other systematic uncertainties include meyebolts and m_turnbuckles because they were measured using the same scale as W for the plate.  The systematic uncertainty equation developed from the measurands is
 $$
-w_(I,sys)^2=(∂W/∂I w_(w,sys))^2+(∂R/∂I w_(R,sys))^2+(∂T/∂I w_(T,sys))^2+(∂L/∂I w_(L,sys))^2+((∂m_eyebolts)/∂I w_(m_eyebolts,sys))^2+((∂m_turnbuckle)/∂I w_(m_turnbuckle,sys))^2
+w_{I,sys}^2=(∂W/∂I w_{w,sys})^2+(∂R/∂I w_{R,sys})^2+(∂T/∂I w_{T,sys})^2+(∂L/∂I w_{L,sys})^2+((∂m_{eyebolts})/∂I w_{m_{eyebolts},sys})^2+((∂m_{turnbuckle})/∂I w_{m_{turnbuckle},sys})^2
 $$
 Random uncertainty is also accounted for in the period since it is the measurand we tested multiple (15) times.  The uncertainties calculated are in Table 2.
 
