@@ -1,3 +1,7 @@
+# RAL added some files to ignore
+*.Rproj
+*.html
+
 # History files
 .Rhistory
 .Rapp.history
